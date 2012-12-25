@@ -1,0 +1,33 @@
+<%= form_for(@servqual) do |f| %>
+  <% if @servqual.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@servqual.errors.count, "error") %> prohibited this servqual from being saved:</h2>
+
+      <ul>
+      <% @servqual.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :question %><br />
+    <%= f.text_field :question %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br />
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= select("servqual", "status", EnumStatus::STATUS) %>
+  </div>
+  <div class="field">
+    <%= f.label :dimension_id %><br />
+    <%= f.text_field :dimension_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

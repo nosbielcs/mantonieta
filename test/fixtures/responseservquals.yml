@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  levelmin: 1
+  levelmax: 1
+  levelper: 1
+
+two:
+  levelmin: 1
+  levelmax: 1
+  levelper: 1

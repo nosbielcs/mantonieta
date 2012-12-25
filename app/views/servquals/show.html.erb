@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Question:</b>
+  <%= @servqual.question %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @servqual.order %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @servqual.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_servqual_path(@servqual) %> |
+<%= link_to 'Back', servquals_path %>

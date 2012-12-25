@@ -1,0 +1,31 @@
+<h1>Listing dimensions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Survey</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dimensions.each do |dimension| %>
+  <tr>
+    <td><%= dimension.survey.user.name %></td>
+    <td><%= dimension.survey.title %></td>
+    <td><%= dimension.name %></td>
+    <td><%= dimension.description %></td>
+    <td><%= dimension.status %></td>
+    <td><%= link_to 'Show', dimension %></td>
+    <td><%= link_to 'Edit', edit_dimension_path(dimension) %></td>
+    <td><%= link_to 'Destroy', dimension, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dimension', new_dimension_path %>

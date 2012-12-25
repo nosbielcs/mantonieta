@@ -1,0 +1,33 @@
+<%= form_for(@responseservqual) do |f| %>
+  <% if @responseservqual.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@responseservqual.errors.count, "error") %> prohibited this responseservqual from being saved:</h2>
+
+      <ul>
+      <% @responseservqual.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :levelmin %><br />
+    <%= select("responseservqual", "levelmin", EnumScale::SCALE) %>
+  </div>
+  <div class="field">
+    <%= f.label :levelmax %><br />
+    <%= select("responseservqual", "levelmax", EnumScale::SCALE) %>
+  </div>
+  <div class="field">
+    <%= f.label :levelper %><br />
+    <%= select("responseservqual", "levelper", EnumScale::SCALE) %>
+  </div>
+  <div class="field">
+    <%= f.label :servqual_id %><br />
+    <%= f.number_field :servqual_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

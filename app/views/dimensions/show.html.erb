@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @dimension.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @dimension.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @dimension.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_dimension_path(@dimension) %> |
+<%= link_to 'Back', dimensions_path %>

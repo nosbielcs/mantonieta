@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyString
+  initialtext: MyText
+  token: MyString
+  nvalue: 
+  status: MyString
+
+two:
+  title: MyString
+  description: MyString
+  initialtext: MyText
+  token: MyString
+  nvalue: 
+  status: MyString

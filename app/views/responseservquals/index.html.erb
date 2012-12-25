@@ -1,0 +1,27 @@
+<h1>Listing responseservquals</h1>
+
+<table>
+  <tr>
+    <th>Levelmin</th>
+    <th>Levelmax</th>
+    <th>Levelper</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @responseservquals.each do |responseservqual| %>
+  <tr>
+    <td><%= responseservqual.levelmin %></td>
+    <td><%= responseservqual.levelmax %></td>
+    <td><%= responseservqual.levelper %></td>
+    <td><%= link_to 'Show', responseservqual %></td>
+    <td><%= link_to 'Edit', edit_responseservqual_path(responseservqual) %></td>
+    <td><%= link_to 'Destroy', responseservqual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Responseservqual', new_responseservqual_path %>

@@ -1,0 +1,9 @@
+<h1>Sessions#new</h1>
+<%= form_tag :controller => :sessions, :action => :create do %>
+<p label for="cpf">CPF or Email</label><br />
+	<%= text_field_tag 'cpf' %></p>
+<p label for="pass">Password</label><br />
+	<%= password_field_tag 'pass' %></p>
+<p><%= submit_tag 'Log On' %></p>
+
+<% end %>
