@@ -14,6 +14,7 @@ class SurveysController < ApplicationController
   # GET /surveys/1.json
   def show
     @survey = Survey.find(params[:id])
+    @servquals = @survey.listservquals
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,4 +82,15 @@ class SurveysController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def show_servqual
+    @survey = Survey.find(params[:id])
+    @servquals = @survey.listservquals
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @survey }
+    end
+  end
+
 end

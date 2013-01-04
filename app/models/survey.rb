@@ -11,5 +11,15 @@ class Survey < ActiveRecord::Base
   #relacionamentos
   belongs_to :user
   has_many :dimensions, :dependent => :destroy
+
+  def listservquals
+    Servqual.where(dimension_id: Dimension.where(survey_id: self.id)).where(:status => "ON").order("`order`")
+  end
+
+  def listresponseservquals
+    Responseservqual.where(servqual_id: Servqual.where(dimension_id: Dimension.where(survey_id: self.id)))
+  end
+
+
   
 end

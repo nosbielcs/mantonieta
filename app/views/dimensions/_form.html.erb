@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :survey_id %><br />
-    <%= f.text_field :survey_id %>
+    <%= f.collection_select(:survey_id, Survey.where("user_id = #{@current_user.id}"), :id, :title, {:prompt => true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

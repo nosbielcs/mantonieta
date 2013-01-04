@@ -1,35 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @survey.title %>
-</p>
+<h4>Structure of Survey</h4>
+<table class="table table-bordered">
+<tr><td>
+  <b>Title:</b>  <%= @survey.title %>
+</td></tr>
 
-<p>
+<tr><td>
   <b>Description:</b>
   <%= @survey.description %>
-</p>
+</td></tr>
 
-<p>
+<tr><td>
   <b>Initialtext:</b>
   <%= @survey.initialtext %>
-</p>
+</td></tr>
 
-<p>
+<tr><td>
   <b>Token:</b>
   <%= @survey.token %>
-</p>
+</td></tr>
 
-<p>
+<tr><td>
   <b>Nvalue:</b>
   <%= @survey.nvalue %>
-</p>
+</td></tr>
 
-<p>
+<tr><td>
   <b>Status:</b>
   <%= @survey.status %>
-</p>
+</td></tr>
+</table>
+<%= link_to 'Edit', edit_survey_path(@survey), :class => "btn btn-primary" %>
+<%= link_to 'Back', surveys_path, :class => "btn btn-inverse" %>
 
-
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<hr />
+<h4>Structure of Servqual</h4>
+<table class="table table-striped">
+  <tr>
+    <th>Dimension</th>
+    <th>Question</th>
+    <th>Order</th>
+    <th>Status</th>
+  </tr>
+  <% @servquals.each do |servqual| %>
+    <tr>
+     <td><%= servqual.dimension.name %></td>
+     <td><%= servqual.question %></td>
+     <td><%= servqual.order %></td>
+     <td><%= servqual.status %></td>
+    </tr>
+  <% end %>
+</table>

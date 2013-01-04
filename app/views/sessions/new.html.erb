@@ -1,9 +1,21 @@
-<h1>Sessions#new</h1>
-<%= form_tag :controller => :sessions, :action => :create do %>
-<p label for="cpf">CPF or Email</label><br />
-	<%= text_field_tag 'cpf' %></p>
-<p label for="pass">Password</label><br />
-	<%= password_field_tag 'pass' %></p>
-<p><%= submit_tag 'Log On' %></p>
+<div class="container">
+
+<h2 class="form-signin-heading">Login on system</h2>
+<%= form_tag :class => "form-horizontal", :controller => :sessions, :action => :create do %>
+<div class="control-group">
+<label class="control-label" for="cpf">CPF or Email</label>
+<div class="controls">
+	<%= text_field_tag 'cpf' %>
+</div>
+</div>
+
+<div class="control-group">
+<label class="control-label" for="pass">Password</label>
+<div class="controls">
+	<%= password_field_tag 'pass' %>
+</div>
+</div>
+<p><%= submit_tag 'Log In', :class => "btn btn-large btn-primary" %></p>
 
 <% end %>
+</div>

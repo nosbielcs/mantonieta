@@ -1,8 +1,7 @@
-<h1>Listing servquals</h1>
+<h1>Listing servquals for <%= @current_user.name %></h1>
 
-<table>
+<table class="table table-hover">
   <tr>
-    <th>User</th>
     <th>Survey</th>
     <th>Dimension</th>
     <th>Question</th>
@@ -14,8 +13,8 @@
   </tr>
 
 <% @servquals.each do |servqual| %>
+    <% #if (servqual.dimension.survey.user_id == @current_user.id) %>
   <tr>
-    <td><%= servqual.dimension.survey.user.name %></td>
     <td><%= servqual.dimension.survey.title %></td>
     <td><%= servqual.dimension.name %></td>
     <td><%= servqual.question %></td>
@@ -25,9 +24,11 @@
     <td><%= link_to 'Edit', edit_servqual_path(servqual) %></td>
     <td><%= link_to 'Destroy', servqual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% #end %>
 <% end %>
 </table>
 
 <br />
+
 
 <%= link_to 'New Servqual', new_servqual_path %>

@@ -3,21 +3,45 @@
 <head>
   <title>Mantonieta</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "bootstrap.min.css" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "bootstrap.min.js" %>
+  <%= javascript_include_tag "jquery-1.8.3.min.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if (@current_user == nil) %>
 <header>
-<p>Cabeçalho</p>
+  <div class="navbar navbar-inverse"> </div>
 </header>
 
-<section>
+<% else %>
+<header class="navbar navbar-inverse">
+	<div class="navbar-inner">
+    	<a class="brand" href="#">Mantonieta</a>
+    	<ul class="nav">
+			<li><%= link_to "Surveys", surveys_path %></li>
+			<li><%= link_to "Dimensions", dimensions_path %></li>
+			<li><%= link_to "Servquals", servquals_path %></li>
+			<li><%= link_to "Responses", responseservquals_path %></li>
+    	</ul>
+    	<div class="masthead">
+        <ul class="nav nav-pills pull-right">
+        	<li class="active"><%= link_to "Profile", users_path %></li>
+			<li><%= link_to "Logoff", sessions_path, :method => :destroy %></li>
+        </ul>
+      </div>
+    </div>
+</header>
+<% end %>
+
+<section class="container">
 <%= yield %>
 </section>
 
-<footer>
-<p>Barra Inferior</p>
+<hr></hr>
+<footer class="footer">
+	
 </footer>
 
 </body>

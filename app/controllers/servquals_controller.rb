@@ -2,7 +2,8 @@ class ServqualsController < ApplicationController
   # GET /servquals
   # GET /servquals.json
   def index
-    @servquals = Servqual.all
+    #@servquals = Servqual.all
+    @servquals = @current_user.searchservqual
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +26,7 @@ class ServqualsController < ApplicationController
   # GET /servquals/new.json
   def new
     @servqual = Servqual.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @servqual }

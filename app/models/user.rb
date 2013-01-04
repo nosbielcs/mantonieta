@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   	user
   end
 
+  def searchservqual
+    Servqual.where(dimension_id: Dimension.where(survey_id: Survey.where(user_id: self.id)))
+  end
+
 end

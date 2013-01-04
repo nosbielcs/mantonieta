@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :dimension_id %><br />
-    <%= f.text_field :dimension_id %>
+    <% @@a = [] %>
+    <% @current_user.surveys.map(&:dimensions).each do |a| %>
+    <% @@a += a %>
+    <% end %>
+    <%= f.collection_select(:dimension_id, @@a, :id, :name, {:prompt => true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

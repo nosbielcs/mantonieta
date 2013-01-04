@@ -3,7 +3,6 @@ class DimensionsController < ApplicationController
   # GET /dimensions.json
   def index
     @dimensions = Dimension.all
-    #@dimensions = Dimension.where("survey_id = #{@current_user.id}")
 
     respond_to do |format|
       format.html # index.html.erb

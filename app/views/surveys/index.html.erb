@@ -1,8 +1,7 @@
 <h1>Listing surveys of <%= @current_user.name %></h1>
 
-<table>
+<table class="table table-hover">
   <tr>
-    <th>User</th>
     <th>Title</th>
     <th>Description</th>
     <th>Initialtext</th>
@@ -12,12 +11,10 @@
     <th></th>
     <th></th>
     <th></th>
-    <th>Dimensões</th>
   </tr>
 
 <% @surveys.each do |survey| %>
   <tr>
-    <td><%= survey.user.name %></td>
     <td><%= survey.title %></td>
     <td><%= survey.description %></td>
     <td><%= survey.initialtext %></td>
@@ -27,13 +24,17 @@
     <td><%= link_to 'Show', survey %></td>
     <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
     <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td>
-        <%= survey.dimensions.map(&:name).to_s [survey.dimensions.map(&:status) => "OFF"]%>
-    </td>
   </tr>
+<tr class="info" style="border-bottom: 2px solid #DFDFDF">
+    <td colspan=9>
+        <i class="icon-tasks"></i>
+        <%= "Dimensions evaluated" %>
+            <%= survey.dimensions.map(&:name).to_s [survey.dimensions.map(&:status) => "OFF"]%>
+    </td>
+</tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to 'New Survey', new_survey_path, :class => "btn btn-primary" %>
