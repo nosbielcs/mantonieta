@@ -83,7 +83,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  def show_servqual
+  def list_servqual
     @survey = Survey.find(params[:id])
     @servquals = @survey.listservquals
 

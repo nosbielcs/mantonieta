@@ -12,6 +12,7 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :dimensions, :dependent => :destroy
 
+  #lista todas as perguntas servqual para determinado questionario
   def listservquals
     Servqual.where(dimension_id: Dimension.where(survey_id: self.id)).where(:status => "ON").order("`order`")
   end

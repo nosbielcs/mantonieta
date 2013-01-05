@@ -1,0 +1,53 @@
+
+<h4>Ask survey <%= @survey.title %></h4>
+<table class="table table-striped">
+  <tr>
+    <th>Question</th>
+    <th>Question ID</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Per</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>
+		<% EnumScale::SCALE.each do |scale1, scale2| %>
+     	<%= scale1.to_s %>
+     	<% end %>
+    </th>
+    <th>
+		<% EnumScale::SCALE.each do |scale1, scale2| %>
+     	<%= scale1.to_s %>
+     	<% end %>
+    </th>
+    <th>
+		<% EnumScale::SCALE.each do |scale1, scale2| %>
+     	<%= scale1.to_s %>
+     	<% end %>
+    </th>
+  </tr>
+  <% @servquals.each do |servqual| %>
+    <tr>
+     <td><%= servqual.question %></td>
+     <td><%= servqual.id %></td>
+     
+     <td>
+     	<% EnumScale::SCALE.each do |scalemin| %>
+     	<%= radio_button_tag("name1"+servqual.id.to_s, "value") %>
+     	<% end %>
+     </td>
+     <td>
+     	<% EnumScale::SCALE.each do |scalemax| %>
+     	<%= radio_button_tag("name2"+servqual.id.to_s, "value") %>
+     	<% end %>
+     </td>
+     <td>
+     	<% EnumScale::SCALE.each do |scaleper| %>
+     	<%= radio_button_tag("name3"+servqual.id.to_s, "value") %>
+     	<% end %>
+     </td>
+     
+    </tr>
+  <% end %>
+</table>

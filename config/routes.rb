@@ -1,4 +1,6 @@
 Mantonieta::Application.routes.draw do
+  #match '/surveys/:list_servqual', :controller => 'surveys', :action => 'list_servqual', :as => 'list_servqual', :via => :get
+
   resources :responseservquals
 
   resources :servquals
@@ -12,6 +14,9 @@ Mantonieta::Application.routes.draw do
   resources :sessions
 
   root :to => 'surveys#index'
+
+  #cria uma rota personalizada para exibir servqual's de determinado questionario
+  get "surveys/:id/list_servqual" => "surveys#list_servqual", :as => "list_servqual"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
