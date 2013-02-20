@@ -15,6 +15,7 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @servquals = @survey.listservquals
+    @responses = @survey.listresponseservquals
 
     respond_to do |format|
       format.html # show.html.erb
@@ -85,12 +86,30 @@ class SurveysController < ApplicationController
 
   def list_servqual
     @survey = Survey.find(params[:id])
+    responseservqual = @survey.responseservquals.build
+
     @servquals = @survey.listservquals
+    @responseservqual = Responseservqual.new(params[:responseservqual])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @survey }
+      if @responseservqual.save
+        format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
+        format.json { render json: @survey, status: :created, location: @survey }
+      else
+        format.html { render action: "list_servqual" }
+        format.json { render json: @survey.errors, status: :unprocessable_entity }
+      end
+      
     end
   end
+
+  def list_report
+    @survey = Survey.find(params[:id])
+    @dimensions = @survey.listdimensions
+    @servquals = @survey.listservquals
+    @responseservquals = @survey.listresponseservquals
+
+  end
+
 
 end

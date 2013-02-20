@@ -1,0 +1,37 @@
+
+<table>
+    <tr>
+        <th>Question</th> 
+        <th>Levelmin</th> 
+        <th>Levelmax</th> 
+        <th>Levelper</th> 
+    </tr>
+    
+<%= form_for @survey do |survey_f| %>
+    <% @survey.dimensions.each do |dimension| %>
+        <% dimension.servquals.each do |servqual| %>
+            <%= survey_f.fields_for :responseservquals, @responseservqual do |response_f| %>
+            <tr>
+                <%= response_f.hidden_field :servqual_id, :value => servqual.id %>
+                <%= response_f.hidden_field :dimension_id, :value => dimension.id %>
+                <%= response_f.hidden_field :survey_id, :value => @survey.id %>
+                <td><%= servqual.order.to_s + "-" + servqual.question %></td>
+                <td><%= response_f.select :levelmin, options_for_select([1,2,3,4,5,6,7]) %></td>
+                <td><%= response_f.select :levelmax, options_for_select([1,2,3,4,5,6,7]) %></td>
+                <td><%= response_f.select :levelper, options_for_select([1,2,3,4,5,6,7]) %></td>
+            </tr>
+            <% end %>
+            
+        <% end %>
+    <% end %>
+<tr><td><%= survey_f.submit %></tr></td>
+<% end %>
+
+</table>
+
+
+
+        <% #EnumScale::SCALE.each do |scalemax| %>
+        <% #radio_button "responseservqual"+servqual.id.to_s, "levelmax", scalemax[1] %>
+        <% #end %>
+

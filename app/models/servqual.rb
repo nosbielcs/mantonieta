@@ -1,5 +1,5 @@
 class Servqual < ActiveRecord::Base
-  attr_accessible :order, :question, :status, :dimension_id
+  attr_accessible :order, :question, :status, :dimension_id, :responseservquals_attributes
 
   #requer constantes enumeradas
   require 'enum.rb'
@@ -10,5 +10,8 @@ class Servqual < ActiveRecord::Base
   #relacionamentos
   belongs_to :dimension
   has_many :responseservquals, :dependent => :destroy
+
+  #aninha atributos do relacionamento 
+  accepts_nested_attributes_for :responseservquals
 
 end

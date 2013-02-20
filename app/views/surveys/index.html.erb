@@ -12,6 +12,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @surveys.each do |survey| %>
@@ -25,10 +26,16 @@
     <td><%= link_to 'Show', survey %></td>
     <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
     <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'Ask', list_servqual_path(survey.id) %></td>
+    <td><%= link_to 'Response', list_servqual_path(survey.id) %></td>
+    <% #Valida se a amostra calculada foi atingida%>
+    <% if survey.listresponseservquals.count < survey.nvalue %>
+    <td> -- </td>
+    <% else %>
+    <td><%= link_to 'Report', list_report_path(survey.id) %></td>
+    <% end %>
   </tr>
 <tr class="info" style="border-bottom: 2px solid #DFDFDF">
-    <td colspan=10>
+    <td colspan=11>
         <i class="icon-tasks"></i>
         <%= "Dimensions evaluated" %>
             <%= survey.dimensions.map(&:name).to_s [survey.dimensions.map(&:status) => "OFF"]%>

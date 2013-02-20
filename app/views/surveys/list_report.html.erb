@@ -1,0 +1,93 @@
+<h1>Report Survey</h1>
+ <% #render 'form_report_submit' %>
+ <h3><%= @survey.title %></h3>
+ <h4><%= @survey.description %></h4>
+
+ <div>
+ <strong>General assessment</strong><br />
+ <% #@responseservquals.map(&:levelmin) -> All values %>
+ <%= @responseservquals.average('levelmin') %>
+ <%= @responseservquals.average('levelmax') %>
+ <%= @responseservquals.average('levelper') %>
+</div>
+
+<div>
+<strong>Assessment by question</strong><br />
+<% @servquals.map.each do |servqual| %>
+<%= servqual.question + " - " %>
+<% #@responseservquals.where(:servqual_id => servqual.id).map(&:levelmin).join(",") - All values %>
+<%= @responseservquals.where(:servqual_id => servqual.id).average('levelmin') %>
+<%= @responseservquals.where(:servqual_id => servqual.id).average('levelmax') %>
+<%= @responseservquals.where(:servqual_id => servqual.id).average('levelper') %><br />
+<% end %>
+</div>
+
+<div>
+    <strong>Assessment by dimension</strong><br />
+    <% @dimensions.map.each do |dimension| %>
+        <%= dimension.name + " - " %>
+        <% #@responseservquals.where(:dimension_id => dimension.id).map(&:levelmin).join(",") - All values %>
+        <%= @responseservquals.where(:dimension_id => dimension.id).average('levelmin') %>
+        <%= @responseservquals.where(:dimension_id => dimension.id).average('levelmax') %>
+        <%= @responseservquals.where(:dimension_id => dimension.id).average('levelper') %><br />
+    <% end %>
+</div>
+
+
+
+
+
+
+<br /><br />
+<div>
+<strong>Factor analysis [Levelper]</strong>
+<% i = 0 %>
+<% vec = []%>
+<% @servquals.map.each do |servqual| %>
+<% vec[i] = @responseservquals.where(:servqual_id => servqual.id).map(&:levelper).to_scale %>
+<% i += 1 %>
+<% end %>
+</div>
+<% ds = Hash.new %>
+<% j = 0 %>
+<% while j < i %>
+<% ds["vec#{j}"] = vec[j] %>
+<% j += 1 %>
+<% end %>
+<% ds = ds.to_dataset %>
+<% cor_matrix=Statsample::Bivariate.correlation_matrix(ds) %>
+<% pca = Statsample::Factor::PCA.new(cor_matrix) %>
+
+<br />
+<p>Eigenvalues<br />
+<%= pca.eigenvalues %>
+</p>
+
+<p>Number factors extracted<br />
+<%= pca.m %>
+</p>
+
+<p>Communalities<br />
+<%= pca.communalities %>
+</p>
+
+<p>Eigenvectors<br />
+<% k = 0 %>
+<%  while k < i %>
+<%= pca.eigenvectors[k].to_a %><br />
+    <% k += 1 %>
+    <% end %>
+</p>
+
+<p>Weight matrix factorial <br />
+    <%= pca.component_matrix.to_matrix %>
+</p>
+
+<p>KMO <br />
+    <%= kmo = Statsample::Factor.kmo(cor_matrix).round(2) %>
+</p>
+
+<p>Cronbach Alpha <br />
+    <% alp = Statsample::Reliability::ScaleAnalysis.new(ds) %>
+    <%= alp.alpha_standarized.round(2) %>
+</p>   

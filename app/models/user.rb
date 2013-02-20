@@ -21,4 +21,5 @@ class User < ActiveRecord::Base
     Servqual.where(dimension_id: Dimension.where(survey_id: Survey.where(user_id: self.id)))
   end
 
+
 end

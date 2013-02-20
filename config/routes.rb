@@ -17,6 +17,10 @@ Mantonieta::Application.routes.draw do
 
   #cria uma rota personalizada para exibir servqual's de determinado questionario
   get "surveys/:id/list_servqual" => "surveys#list_servqual", :as => "list_servqual"
+  post "surveys/:id/list_servqual" => "surveys#list_servqual", :as => "list_servqual"
+  
+  get "surveys/:id/list_report" => "surveys#list_report", :as => "list_report"
+  post "surveys/:id/list_report" => "surveys#list_report", :as => "list_report"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

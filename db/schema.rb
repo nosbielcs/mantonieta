@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121119161222) do
+ActiveRecord::Schema.define(:version => 20121119161240) do
 
   create_table "dimensions", :force => true do |t|
     t.string   "name"
@@ -28,12 +28,16 @@ ActiveRecord::Schema.define(:version => 20121119161222) do
     t.integer  "levelmin"
     t.integer  "levelmax"
     t.integer  "levelper"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "servqual_id"
+    t.integer  "survey_id"
+    t.integer  "dimension_id"
   end
 
+  add_index "responseservquals", ["dimension_id"], :name => "index_responseservquals_on_dimension_id"
   add_index "responseservquals", ["servqual_id"], :name => "index_responseservquals_on_servqual_id"
+  add_index "responseservquals", ["survey_id"], :name => "index_responseservquals_on_survey_id"
 
   create_table "servquals", :force => true do |t|
     t.string   "question"

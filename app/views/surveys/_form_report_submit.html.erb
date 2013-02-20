@@ -1,0 +1,10 @@
+
+<%= form_for @survey do |s| %>
+    <% @survey.dimensions.each do |d| %>
+        <% d.servquals.each do |q| %>
+            <%= q.responseservquals.each do |r| %>
+                <%= "***" %>
+            <% end %>
+        <% end %> 
+    <% end %>
+<% end %>

@@ -1,8 +1,11 @@
 class Survey < ActiveRecord::Base
-  attr_accessible :description, :initialtext, :nvalue, :status, :title, :token, :user_id
-
+  attr_accessible :description, :initialtext, :nvalue, :status, :title, :token, :user_id, :responseservquals_attributes, :dimensions_attributes                 
+  
   #requer constantes enumeradas
   require 'enum.rb'
+
+  #requer biblioteca matematica
+  require 'statsample'
 
   #validações
   validates_presence_of :nvalue, :status, :title, :token, :user_id
@@ -10,9 +13,18 @@ class Survey < ActiveRecord::Base
 
   #relacionamentos
   belongs_to :user
+  has_many :responseservquals, :dependent => :destroy
   has_many :dimensions, :dependent => :destroy
 
-  #lista todas as perguntas servqual para determinado questionario
+  #aninha atributos do relacionamento
+  accepts_nested_attributes_for :dimensions
+  accepts_nested_attributes_for :responseservquals
+
+  #filtros específicos para exibir informações nos relatórios
+  def listdimensions
+    Dimension.where(survey_id: self.id)
+  end 
+
   def listservquals
     Servqual.where(dimension_id: Dimension.where(survey_id: self.id)).where(:status => "ON").order("`order`")
   end
@@ -21,6 +33,4 @@ class Survey < ActiveRecord::Base
     Responseservqual.where(servqual_id: Servqual.where(dimension_id: Dimension.where(survey_id: self.id)))
   end
 
-
-  
 end
