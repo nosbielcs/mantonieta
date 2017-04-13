@@ -1,4 +1,4 @@
-![Mantonieta Logo](https://github.com/nosbielcs/mantonieta/blob/master/maria_antonieta.jpg) Mantonieta Project - Quality Service
+![Mantonieta Logo](https://github.com/nosbielcs/mantonieta/blob/master/maria_antonieta.jpg =100x180) Mantonieta Project - Quality Service
 ==========
 ## Model Concept
 
